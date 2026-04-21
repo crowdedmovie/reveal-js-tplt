@@ -6,6 +6,7 @@
 <title>Presentation Template — OLED Dark Modern</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
 <style>
 /* ── GOOGLE FONTS (INTER) ─────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -150,8 +151,8 @@
 .arch-arrow .arrow-line { width: 100%; height: 1px; background: var(--accent-green); position: relative; }
 .arch-arrow .arrow-line::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-top: 1px solid var(--accent-green); border-right: 1px solid var(--accent-green); transform: rotate(45deg); }
 
-.arch-hub { background: rgba(255,255,255,0.02); border: 1px solid var(--accent-green); border-radius: 16px; flex: 1.5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1em; position: relative; box-shadow: inset 0 0 40px rgba(16, 185, 129, 0.05); }
-.arch-hub::after { content: ''; position: absolute; inset: 0; border-radius: 16px; pointer-events: none; }
+.arch-hub { background: rgba(255,255,255,0.02); border: 1px solid var(--accent-green); border-radius: 28px; flex: 1.5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1em; position: relative; box-shadow: inset 0 0 40px rgba(16, 185, 129, 0.05); }
+.arch-hub::after { content: ''; position: absolute; inset: 0; border-radius: 28px; pointer-events: none; }
 .arch-hub .hub-name { font-size: 0.8em; font-weight: 600; color: var(--text); }
 .arch-hub .hub-sub { font-size: 0.4em; color: var(--accent-green); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
 .hub-divider { width: 40%; height: 1px; background: var(--border); }
@@ -222,6 +223,23 @@
 
 /* ── FOOTNOTE ────────────────────────────────────────────────── */
 .footnote { font-size: 0.3em; color: var(--muted); font-weight: 300; margin-top: auto; padding-top: 2em; border-top: 1px solid var(--border); }
+
+/* ── SUBSLIDE INDICATOR ──────────────────────────────────────── */
+.subslide-indicator {
+  margin-top: auto;
+  padding-top: 1.4em;
+  font-size: 0.32em;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.subslide-indicator .arrow {
+  font-size: 1.1em;
+  line-height: 1;
+}
 </style>
 </head>
 <body>
@@ -484,7 +502,7 @@
           <span class="code-lang">JavaScript</span>
           <span class="code-file">src/core/processor.js</span>
         </div>
-        <pre><code>export async function processEvent(payload) {
+        <pre><code class="language-javascript">export async function processEvent(payload) {
   const validated = validatePayload(payload);
   if (!validated.ok) {
     throw new Error(`Invalid payload: ${validated.reason}`);
@@ -586,6 +604,102 @@
   </div>
 </section>
 
+<section>
+  <section class="slide-content" data-transition="fade">
+    <div class="slide-header">
+      <span class="slide-title-text" data-id="header-title">Vertical Slides Demo</span>
+      <span class="slide-section" data-id="header-section">06 · Stack Entry</span>
+    </div>
+    <div class="slide-body">
+      <div style="font-size:0.55em; color:var(--text); font-weight:600; margin-bottom:0.8em;">This is a vertical slide stack.</div>
+      <div style="font-size:0.42em; color:var(--muted); line-height:1.7; max-width:90%;">
+        Use the down arrow to move through child slides, then up to return.
+        This pattern is useful for adding optional detail without breaking the main narrative flow.
+      </div>
+      <div class="bilingual-note" style="margin-top:2.5em; width:fit-content;">
+        <p><span>Navigation:</span> Next level &nbsp;=&nbsp; Down Arrow &nbsp;&nbsp;|&nbsp;&nbsp; <span>Back:</span> Up Arrow</p>
+      </div>
+      <div class="subslide-indicator"><span class="arrow">↓</span><span>Subslide below</span></div>
+    </div>
+  </section>
+
+  <section class="slide-content" data-transition="fade">
+    <div class="slide-header">
+      <span class="slide-title-text" data-id="header-title">Vertical Slides Demo</span>
+      <span class="slide-section" data-id="header-section">06 · Detail Level 1</span>
+    </div>
+    <div class="slide-body">
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-val">L1</div>
+          <div class="stat-label">First layer of detail inside the same horizontal chapter.</div>
+        </div>
+        <div class="stat-box green">
+          <div class="stat-val">+Depth</div>
+          <div class="stat-label">Keep advanced context optional for viewers who need it.</div>
+        </div>
+      </div>
+      <ul style="margin-top:1.2em;">
+        <li>Keep the parent slide as the chapter intro.</li>
+        <li>Use child slides for deeper breakdowns.</li>
+      </ul>
+      <div class="subslide-indicator"><span class="arrow">↓</span><span>Subslide below</span></div>
+    </div>
+  </section>
+
+  <section class="slide-content" data-transition="fade">
+    <div class="slide-header">
+      <span class="slide-title-text" data-id="header-title">Vertical Slides Demo</span>
+      <span class="slide-section" data-id="header-section">06 · Detail Level 2</span>
+    </div>
+    <div class="slide-body">
+      <div class="context-grid" style="height:70%;">
+        <div class="ctx-card blue">
+          <div class="ctx-badge">Use Case</div>
+          <div class="ctx-title">Deep-dive annex</div>
+          <div class="ctx-body">Place technical explanations, backup data, and implementation details on vertical child slides.</div>
+        </div>
+        <div class="ctx-card green">
+          <div class="ctx-badge">Speaker Control</div>
+          <div class="ctx-title">Flexible pace</div>
+          <div class="ctx-body">You can skip child slides in short sessions while still keeping complete material in the same deck.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="slide-content" data-auto-animate data-transition="fade">
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Image Usage Demo</span>
+    <span class="slide-section" data-id="header-section">07 · Media</span>
+  </div>
+  <div class="slide-body" style="display:flex; flex-direction:column; gap:1.2em;">
+    <div style="font-size:0.42em; color:var(--muted);">Example slide showing how to embed an image asset in the template.</div>
+    <div style="flex:1; min-height:0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface2); display:flex; align-items:center; justify-content:center;">
+      <img src="../assets/images/accrylic.jpg" alt="Acrylic visual" style="width:100%; height:100%; object-fit:cover; display:block;">
+    </div>
+    <div class="footnote" style="padding-top:1em;">Source: assets/images/accrylic.jpg</div>
+  </div>
+</section>
+
+<section class="slide-content" data-auto-animate data-transition="fade">
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Video Player Demo</span>
+    <span class="slide-section" data-id="header-section">08 · Media</span>
+  </div>
+  <div class="slide-body" style="display:flex; flex-direction:column; gap:1.2em;">
+    <div style="font-size:0.42em; color:var(--muted);">Example slide showing how to embed a video asset in the template.</div>
+    <div style="flex:1; min-height:0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface2); display:flex; align-items:center; justify-content:center;">
+      <video controls preload="metadata" playsinline style="width:100%; height:100%; object-fit:cover; display:block;">
+        <source src="../assets/media/bushes.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="footnote" style="padding-top:1em;">Source: assets/media/bushes.mp4</div>
+  </div>
+</section>
+
 <section class="slide-content" data-auto-animate data-transition="fade">
   <div class="slide-header">
     <span class="slide-title-text" data-id="header-title">Key Takeaways</span>
@@ -633,6 +747,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
 <script>
 Reveal.initialize({
   hash: true,
@@ -646,7 +761,7 @@ Reveal.initialize({
   width: 1280,
   height: 720,
   margin: 0,
-  plugins: [ RevealNotes ]
+  plugins: [ RevealNotes, RevealHighlight ]
 });
 </script>
 </body>

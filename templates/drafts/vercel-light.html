@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentation Template — Vercel Light Modern</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
+<style>
+/* ── GOOGLE FONTS (INTER) ─────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* ── LINEAR / VERCEL LIGHT PALETTE ─────────────────────────────── */
+:root {
+  --bg:       #FAFAFA;
+  --surface:  #FFFFFF;
+  --surface2: #FFFFFF;
+  --border:   #E4E4E7;
+  --border-light: #D4D4D8;
+  --text:     #111111;
+  --text2:    #3F3F46;
+  --muted:    #71717A;
+  --accent-primary: #111111;
+  --accent-blue: #0070F3;
+  --accent-purple: #8A2BE2;
+  --accent-green: #10B981;
+  --accent-amber: #F59E0B;
+}
+
+.reveal-viewport { background: var(--bg); }
+.reveal { font-family: 'Inter', sans-serif; font-size: 38px; color: var(--text); }
+
+/* ── GLOBAL RESETS & TYPOGRAPHY ───────────────────────────────────────────── */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 { font-family: 'Inter', sans-serif; text-transform: none; letter-spacing: -0.03em; margin: 0; padding: 0; }
+.reveal p, .reveal li { font-family: 'Inter', sans-serif; font-weight: 400; }
+.reveal section { box-sizing: border-box; }
+.reveal .slides { text-align: left; }
+.reveal ul { list-style: none; padding: 0; margin: 0; }
+.reveal ul li { padding-left: 1.2em; position: relative; margin-bottom: 0.6em; color: var(--text2); font-size: 0.72em; line-height: 1.6; }
+.reveal ul li::before { content: '→'; position: absolute; left: 0; top: 0; color: var(--muted); font-weight: 300; }
+.reveal a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border-light); text-underline-offset: 4px; transition: all 0.2s ease; }
+.reveal a:hover { color: var(--accent-blue); text-decoration-color: var(--accent-blue); }
+
+/* ── VERCEL GRADIENT TEXT UTILITY ────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(180deg, #111111 0%, #71717A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── SLIDE PADDING & PROGRESS ───────────────────────────────────────────── */
+.reveal .slides section { padding: 0; height: 100%; }
+.reveal .progress { color: var(--accent-primary); height: 2px; background: rgba(0,0,0,0.1); }
+
+/* ════════════════════════════════════════════════════════════════
+   SLIDE TYPES
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── TITLE SLIDE ─────────────────────────────────────────────── */
+.slide-title { width: 100%; height: 100%; display: flex !important; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10% !important; background: radial-gradient(circle at 50% 0%, rgba(0,0,0,0.04) 0%, transparent 60%), var(--bg); }
+.slide-title .eyebrow { font-size: 0.35em; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5em; font-weight: 500; border: 1px solid var(--border); padding: 0.4em 1em; border-radius: 99px; background: rgba(0,0,0,0.02); }
+.slide-title h1 { font-size: 2.2em; font-weight: 600; line-height: 1.1; margin-bottom: 0.7em; letter-spacing: -0.04em; }
+.slide-title h1 strong { font-weight: 800; color: var(--text); }
+.slide-title .meta { font-size: 0.4em; color: var(--muted); line-height: 1.8; margin-top: 2em; display: flex; flex-direction: column; align-items: center; gap: 0.5em; }
+.slide-title .meta strong { color: var(--text); font-weight: 500; }
+
+/* ── STANDARD CONTENT SLIDE ──────────────────────────────────── */
+.slide-content { background: var(--bg); width: 100%; height: 100%; display: flex !important; flex-direction: column; padding: 0 !important; }
+
+.slide-header { border-bottom: 1px solid var(--border); padding: 4% 8% 2%; display: flex; align-items: flex-end; justify-content: space-between; flex-shrink: 0; background: var(--bg); }
+.slide-header .slide-title-text { font-size: 0.8em; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+.slide-header .slide-section { font-size: 0.35em; color: var(--muted); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.slide-body { flex: 1; padding: 4% 8%; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden; }
+
+/* ── CLOSING SLIDE ───────────────────────────────────────────── */
+.slide-closing { background: var(--bg); width: 100%; height: 100%; display: flex !important; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10% !important; background: radial-gradient(circle at 50% 100%, rgba(0,0,0,0.04) 0%, transparent 60%); }
+.slide-closing h1 { font-size: 2.5em; font-weight: 700; margin-bottom: 0.2em; }
+.slide-closing .sub { font-size: 0.6em; color: var(--muted); font-weight: 400; }
+.slide-closing .meta { font-size: 0.35em; color: var(--muted); margin-top: 3em; line-height: 2; }
+.slide-closing .meta strong { color: var(--text); font-weight: 500; }
+
+/* ════════════════════════════════════════════════════════════════
+   COMPONENTS
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── STAT CALLOUT ────────────────────────────────────────────── */
+.stats-row { display: flex; gap: 4%; margin: 1em 0 0.5em 0; }
+.stat-box { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 4% 5%; position: relative; transition: border-color 0.3s ease; }
+.stat-box:hover { border-color: var(--border-light); }
+.stat-box .stat-val { font-size: 2em; font-weight: 700; color: var(--text); line-height: 1; letter-spacing: -0.05em; margin-bottom: 0.2em; }
+.stat-box.green .stat-val { color: var(--accent-green); text-shadow: 0 0 20px rgba(16, 185, 129, 0.2); }
+.stat-box.amber .stat-val { color: var(--accent-amber); text-shadow: 0 0 20px rgba(245, 158, 11, 0.2); }
+.stat-box .stat-label { font-size: 0.4em; color: var(--muted); line-height: 1.5; font-weight: 400; }
+
+/* ── FACTOR GRID ─────────────────────────────────────────────── */
+.factor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2%; margin-top: 0.5em; }
+.factor-item { background: transparent; border-top: 1px solid var(--border); padding: 2% 0; }
+.factor-item .factor-label { font-size: 0.45em; font-weight: 500; color: var(--text); margin-bottom: 0.4em; }
+.factor-item .factor-body { font-size: 0.4em; color: var(--muted); line-height: 1.5; }
+
+/* ── AGENDA LIST ─────────────────────────────────────────────── */
+.agenda-list { display: flex; flex-direction: column; gap: 1.5em; margin-top: 2%; }
+.agenda-item { display: flex; align-items: center; gap: 1em; padding-bottom: 1.5em; border-bottom: 1px solid var(--border); }
+.agenda-item:last-child { border-bottom: none; }
+.agenda-item .num { font-size: 0.45em; font-weight: 600; color: var(--muted); background: var(--surface2); padding: 0.4em 0.8em; border-radius: 6px; border: 1px solid var(--border); }
+.agenda-item .label { font-size: 0.6em; font-weight: 500; color: var(--text); }
+.agenda-item .desc { font-size: 0.45em; color: var(--muted); margin-left: auto; text-align: right; }
+
+/* ── STEP LIST (methodology) ─────────────────────────────────── */
+.step-list { display: flex; flex-direction: column; gap: 1.2em; flex: 1; position: relative; }
+.step-item { display: flex; align-items: flex-start; gap: 1.5em; position: relative; z-index: 1; }
+.step-num { font-size: 0.4em; font-weight: 600; color: var(--bg); background: var(--text); width: 2.5em; height: 2.5em; display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; }
+.step-body { flex: 1; padding-top: 0.2em; }
+.step-body .step-title { font-size: 0.5em; font-weight: 500; color: var(--text); }
+.step-body .step-desc { font-size: 0.38em; color: var(--muted); margin-top: 0.2em; }
+
+/* ── BILINGUAL NOTE ──────────────────────────────────────────── */
+.bilingual-note { background: rgba(0,0,0,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 2% 3%; margin-top: 2%; display: flex; align-items: center; justify-content: center; }
+.bilingual-note p { font-size: 0.4em; color: var(--text2); margin: 0; font-weight: 400; line-height: 1.6; }
+.bilingual-note span { color: var(--text); font-weight: 600; }
+
+/* ── COMPONENT LAYOUT ────────────────────────────────────────── */
+.component-layout { display: flex; gap: 5%; height: 85%; align-items: stretch; }
+.comp-main { flex: 1.8; display: flex; flex-direction: column; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 5%; position: relative; overflow: hidden; }
+.comp-main::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,0,0,0.2), transparent); }
+.comp-side { flex: 1; display: flex; flex-direction: column; gap: 1em; }
+
+.comp-badge { display: inline-flex; align-items: center; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 99px; padding: 0.2em 0.8em; margin-bottom: 1em; width: fit-content; }
+.comp-badge span { font-size: 0.35em; font-weight: 500; color: var(--accent-green); letter-spacing: 0.05em; text-transform: uppercase; }
+
+.comp-name { font-size: 1.2em; font-weight: 600; color: var(--text); margin-bottom: 0.5em; letter-spacing: -0.03em; }
+
+.comp-bullets { flex: 1; }
+.comp-bullets ul li { font-size: 0.45em; color: var(--text2); margin-bottom: 0.8em; }
+
+.alt-box { background: transparent; border: 1px solid var(--border); border-radius: 8px; padding: 4%; }
+.alt-box .alt-label { font-size: 0.5em; font-weight: 500; color: var(--text); margin-bottom: 0.2em; }
+.alt-box .alt-reason { font-size: 0.4em; color: var(--muted); line-height: 1.4; }
+
+/* ── ARCHITECTURE DIAGRAM ────────────────────────────────────── */
+.arch-layout { display: flex; align-items: stretch; gap: 4%; height: 75%; margin-top: 3%; }
+.arch-sources { display: flex; flex-direction: column; gap: 1em; justify-content: space-between; flex: 1; }
+.source-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 1em; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.source-box .src-name { font-size: 0.5em; font-weight: 600; color: var(--text); }
+.source-box .src-sub { font-size: 0.35em; color: var(--muted); margin-top: 0.4em; }
+
+.arch-arrows { display: flex; flex-direction: column; justify-content: space-around; align-items: center; flex: 0.6; }
+.arch-arrow { display: flex; flex-direction: column; align-items: center; gap: 0.3em; width: 100%; }
+.arch-arrow .arrow-label { font-size: 0.3em; color: var(--muted); font-family: monospace; }
+.arch-arrow .arrow-line { width: 100%; height: 1px; background: var(--accent-green); position: relative; }
+.arch-arrow .arrow-line::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-top: 1px solid var(--accent-green); border-right: 1px solid var(--accent-green); transform: rotate(45deg); }
+
+.arch-hub { background: rgba(0,0,0,0.02); border: 1px solid var(--accent-green); border-radius: 28px; flex: 1.5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1em; position: relative; box-shadow: inset 0 0 40px rgba(16, 185, 129, 0.05); }
+.arch-hub::after { content: ''; position: absolute; inset: 0; border-radius: 28px; pointer-events: none; }
+.arch-hub .hub-name { font-size: 0.8em; font-weight: 600; color: var(--text); }
+.arch-hub .hub-sub { font-size: 0.4em; color: var(--accent-green); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+.hub-divider { width: 40%; height: 1px; background: var(--border); }
+.hub-functions { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0.5em 1em; width: 80%; }
+.hub-functions span { font-size: 0.35em; color: var(--text2); background: var(--bg); border: 1px solid var(--border); padding: 0.3em 0.8em; border-radius: 99px; }
+
+.arch-int { flex: 1.2; display: flex; flex-direction: column; gap: 1em; justify-content: space-between; }
+.int-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 1em; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.int-item .int-label { font-size: 0.4em; font-weight: 600; color: var(--text); margin-bottom: 0.3em; }
+.int-item .int-desc { font-size: 0.35em; color: var(--muted); line-height: 1.5; }
+
+/* ── CODE BLOCK SLIDE ───────────────────────────────────────── */
+.code-wrap { display: flex; flex-direction: column; gap: 1em; height: 100%; }
+.code-meta { font-size: 0.38em; color: var(--muted); line-height: 1.5; }
+.code-panel {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.code-panel .code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6em 0.9em;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.02);
+}
+.code-panel .code-lang { font-size: 0.34em; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2); }
+.code-panel .code-file { font-size: 0.34em; color: var(--muted); font-family: monospace; }
+.code-panel pre {
+  margin: 0;
+  padding: 1em 1.2em;
+  flex: 1;
+  overflow: auto;
+  background: transparent;
+}
+.code-panel code {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.4em;
+  line-height: 1.6;
+  color: #27272A;
+}
+
+/* ── SUMMARY TABLE ───────────────────────────────────────────── */
+.summary-table { width: 100%; border-collapse: collapse; margin-top: 0; }
+.summary-table th { color: var(--muted); font-size: 0.4em; font-weight: 500; padding: 2% 0; text-align: left; border-bottom: 1px solid var(--border-light); }
+.summary-table td { font-size: 0.45em; padding: 3% 0; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; color: var(--text2); }
+.summary-table tr:last-child td { border-bottom: none; }
+.summary-table .td-component { font-weight: 500; color: var(--text); width: 20%; }
+.summary-table .td-selected { font-weight: 600; color: var(--accent-green); width: 20%; }
+.summary-table .td-dismissed { color: var(--muted); width: 25%; }
+
+/* ── CONTEXT CARDS ───────────────────────────────────────────── */
+.context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4%; height: 80%; margin-top: 2%; }
+.ctx-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 5% 6%; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform 0.2s ease, border-color 0.2s ease; }
+.ctx-card:hover { border-color: var(--border-light); transform: translateY(-2px); }
+.ctx-card .ctx-badge { font-size: 0.35em; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5em; display: inline-block; }
+.ctx-card.blue .ctx-badge { color: var(--accent-blue); }
+.ctx-card.green .ctx-badge { color: var(--accent-green); }
+.ctx-card.amber .ctx-badge { color: var(--accent-amber); }
+.ctx-card.purple .ctx-badge { color: var(--accent-purple); }
+.ctx-card .ctx-title { font-size: 0.6em; font-weight: 600; color: var(--text); margin-bottom: 0.5em; letter-spacing: -0.02em; }
+.ctx-card .ctx-body { font-size: 0.42em; color: var(--muted); line-height: 1.6; flex: 1; font-weight: 300; }
+
+/* ── FOOTNOTE ────────────────────────────────────────────────── */
+.footnote { font-size: 0.3em; color: var(--muted); font-weight: 300; margin-top: auto; padding-top: 2em; border-top: 1px solid var(--border); }
+
+/* ── SUBSLIDE INDICATOR ──────────────────────────────────────── */
+.subslide-indicator {
+  margin-top: auto;
+  padding-top: 1.4em;
+  font-size: 0.32em;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.subslide-indicator .arrow {
+  font-size: 1.1em;
+  line-height: 1;
+}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section class="slide-title" data-transition="fade">
+  <div class="eyebrow">Category / Context</div>
+  <h1 class="text-gradient"><strong>Main Title Here</strong><br>Secondary Subtitle</h1>
+  <div class="meta">
+    <strong>Speaker Name</strong>
+    <span>Role &nbsp;·&nbsp; Organization &nbsp;·&nbsp; Date / Year</span>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li><strong>Welcome:</strong> Greet the audience.</li>
+      <li><strong>Topic:</strong> Introduce the main subject of the presentation.</li>
+      <li><strong>Goal:</strong> State the expected outcome.</li>
+    </ul>
+  </aside>
+</section>
+
+<section class="slide-content" data-auto-animate data-transition="fade">
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Presentation Overview</span>
+    <span class="slide-section" data-id="header-section">Agenda</span>
+  </div>
+  <div class="slide-body">
+    <div class="agenda-list">
+      <div class="agenda-item">
+        <span class="num">01</span>
+        <span class="label">First Main Topic</span>
+        <span class="desc">Brief description of the section</span>
+      </div>
+      <div class="agenda-item">
+        <span class="num">02</span>
+        <span class="label">Second Main Topic</span>
+        <span class="desc">Brief description of the section</span>
+      </div>
+      <div class="agenda-item">
+        <span class="num">03</span>
+        <span class="label">Third Main Topic</span>
+        <span class="desc">Brief description of the section</span>
+      </div>
+      <div class="agenda-item">
+        <span class="num">04</span>
+        <span class="label">Conclusion & Q&A</span>
+        <span class="desc">Wrapping up the presentation</span>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li><strong>Transition:</strong> Introduce the roadmap.</li>
+      <li>Detail briefly what will be covered in each part.</li>
+    </ul>
+  </aside>
+</section>
+
+<section class="slide-content" data-auto-animate>
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Key Metrics & Context</span>
+    <span class="slide-section" data-id="header-section">01 · Section Name</span>
+  </div>
+  <div class="slide-body">
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-val">XXX</div>
+        <div class="stat-label">Description of the neutral metric or data point</div>
+      </div>
+      <div class="stat-box green">
+        <div class="stat-val">XX%</div>
+        <div class="stat-label">Description of a positive/growth metric</div>
+      </div>
+      <div class="stat-box amber">
+        <div class="stat-val">1 in X</div>
+        <div class="stat-label">Description of a warning/attention metric</div>
+      </div>
+    </div>
+    <div class="factor-grid">
+      <div class="factor-item">
+        <div class="factor-label">Factor One</div>
+        <div class="factor-body">Short explanation of this specific factor or constraint.</div>
+      </div>
+      <div class="factor-item">
+        <div class="factor-label">Factor Two</div>
+        <div class="factor-body">Short explanation of this specific factor or constraint.</div>
+      </div>
+      <div class="factor-item">
+        <div class="factor-label">Factor Three</div>
+        <div class="factor-body">Short explanation of this specific factor or constraint.</div>
+      </div>
+      <div class="factor-item">
+        <div class="factor-label">Factor Four</div>
+        <div class="factor-body">Short explanation of this specific factor or constraint.</div>
+      </div>
+    </div>
+    <div class="footnote">Sources: Name of the report · Name of the study · Year</div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Highlight the numbers in the top row.</li>
+      <li>Explain the underlying factors in the grid below.</li>
+    </ul>
+  </aside>
+</section>
+
+<section class="slide-content" data-auto-animate>
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Process & Methodology</span>
+    <span class="slide-section" data-id="header-section">02 · Section Name</span>
+  </div>
+  <div class="slide-body" style="display:flex; flex-direction:column; justify-content:space-between;">
+    <div class="step-list" style="flex:1;">
+      <div class="step-item">
+        <span class="step-num">1</span>
+        <div class="step-body">
+          <div class="step-title">First Phase Name</div>
+          <div class="step-desc">Detail the actions taken during this initial step.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="step-num">2</span>
+        <div class="step-body">
+          <div class="step-title">Second Phase Name</div>
+          <div class="step-desc">Detail the actions taken during this step.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="step-num">3</span>
+        <div class="step-body">
+          <div class="step-title">Third Phase Name</div>
+          <div class="step-desc">Detail the actions taken during this step.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="step-num">4</span>
+        <div class="step-body">
+          <div class="step-title">Final Phase Name</div>
+          <div class="step-desc">Detail the outcome or final action of the methodology.</div>
+        </div>
+      </div>
+    </div>
+    <div class="bilingual-note">
+      <p><span>Pro-tip:</span> Use this block to highlight a specific note &nbsp;&nbsp;|&nbsp;&nbsp; <span>Or rule:</span> that applies to the entire process.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide-content" data-auto-animate>
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="tech-title">Component Analysis</span>
+    <span class="slide-section" data-id="header-section">03 · Section Name</span>
+  </div>
+  <div class="slide-body">
+    <div style="font-size:0.45em; color:var(--muted); margin-bottom:1.5em; font-weight:400;">Role — Define the purpose of this component in one sentence.</div>
+    <div class="component-layout">
+      <div class="comp-main" data-id="tech-main">
+        <div class="comp-badge"><span>Primary Choice</span></div>
+        <div class="comp-name">Main Subject Name</div>
+        <div class="comp-bullets">
+          <ul>
+            <li>First major advantage or feature of this choice</li>
+            <li>Second major advantage or feature of this choice</li>
+            <li>Technical or strategic detail relevant to the context</li>
+            <li>Summary point supporting the decision</li>
+          </ul>
+        </div>
+      </div>
+      <div class="comp-side" data-id="tech-side">
+        <div style="font-size:0.4em; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; padding-bottom:0.5em;">Alternatives Considered</div>
+        <div class="alt-box">
+          <div class="alt-label">Alternative 1</div>
+          <div class="alt-reason">Brief explanation of why this was not selected.</div>
+        </div>
+        <div class="alt-box">
+          <div class="alt-label">Alternative 2</div>
+          <div class="alt-reason">Brief explanation of why this was not selected.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide-content" data-auto-animate>
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">System Architecture Overview</span>
+    <span class="slide-section" data-id="header-section">04 · Section Name</span>
+  </div>
+  <div class="slide-body">
+    <div style="font-size:0.42em; color:var(--muted); font-weight:300; margin-bottom:1%;">A brief introductory sentence explaining the overall flow.</div>
+    <div class="arch-layout">
+      
+      <div class="arch-sources fragment fade-up">
+        <div class="source-box">
+          <div class="src-name">Node A</div>
+          <div class="src-sub">Input / Source</div>
+        </div>
+        <div class="source-box">
+          <div class="src-name">Node B</div>
+          <div class="src-sub">Input / Source</div>
+        </div>
+        <div class="source-box">
+          <div class="src-name">Node C</div>
+          <div class="src-sub">Input / Source</div>
+        </div>
+      </div>
+      
+      <div class="arch-arrows fragment fade-up">
+        <div class="arch-arrow">
+          <div class="arrow-label">Protocol 1</div>
+          <div class="arrow-line"></div>
+        </div>
+        <div class="arch-arrow">
+          <div class="arrow-label">Protocol 2</div>
+          <div class="arrow-line"></div>
+        </div>
+        <div class="arch-arrow">
+          <div class="arrow-label">Protocol 3</div>
+          <div class="arrow-line"></div>
+        </div>
+      </div>
+      
+      <div class="arch-hub fragment fade-up">
+        <div class="hub-name">Central Core</div>
+        <div class="hub-sub">Main Engine</div>
+        <div class="hub-divider"></div>
+        <div class="hub-functions">
+          <span>Action 1</span>
+          <span>Action 2</span>
+          <span>Action 3</span>
+          <span>Action 4</span>
+        </div>
+      </div>
+      
+      <div class="arch-int fragment fade-up">
+        <div class="int-item">
+          <div class="int-label">Node A Flow →</div>
+          <div class="int-desc">Description of what happens<br>during this specific interaction.</div>
+        </div>
+        <div class="int-item">
+          <div class="int-label">Node B Flow →</div>
+          <div class="int-desc">Description of what happens<br>during this specific interaction.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide-content" data-auto-animate>
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Implementation Snippet</span>
+    <span class="slide-section" data-id="header-section">04 · Code Example</span>
+  </div>
+  <div class="slide-body">
+    <div class="code-wrap">
+      <div class="code-meta">A concise code sample to support the architecture decision and show how the core flow is implemented.</div>
+      <div class="code-panel">
+        <div class="code-head">
+          <span class="code-lang">JavaScript</span>
+          <span class="code-file">src/core/processor.js</span>
+        </div>
+        <pre><code class="language-javascript">export async function processEvent(payload) {
+  const validated = validatePayload(payload);
+  if (!validated.ok) {
+    throw new Error(`Invalid payload: ${validated.reason}`);
+  }
+
+  const normalized = normalizeEvent(payload);
+  const enriched = await enrichWithMetadata(normalized);
+
+  return {
+    id: enriched.id,
+    status: "accepted",
+    receivedAt: new Date().toISOString()
+  };
+}</code></pre>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Walk through validation, normalization, and enrichment.</li>
+      <li>Tie each step back to reliability and observability goals.</li>
+    </ul>
+  </aside>
+</section>
+
+<section class="slide-content" data-auto-animate>
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Decisions Summary</span>
+    <span class="slide-section" data-id="header-section">05 · Section Name</span>
+  </div>
+  <div class="slide-body">
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Selected Option</th>
+          <th>Dismissed Options</th>
+          <th>Key Justification</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-component">Category 1</td>
+          <td class="td-selected">Choice A</td>
+          <td class="td-dismissed">Alt 1 · Alt 2</td>
+          <td>Main reason for choosing this specific option over the others.</td>
+        </tr>
+        <tr>
+          <td class="td-component">Category 2</td>
+          <td class="td-selected">Choice B</td>
+          <td class="td-dismissed">Alt 1 · Alt 2</td>
+          <td>Main reason for choosing this specific option over the others.</td>
+        </tr>
+        <tr>
+          <td class="td-component">Category 3</td>
+          <td class="td-selected">Choice C</td>
+          <td class="td-dismissed">Alt 1 · Alt 2</td>
+          <td>Main reason for choosing this specific option over the others.</td>
+        </tr>
+        <tr>
+          <td class="td-component">Category 4</td>
+          <td class="td-selected">Choice D</td>
+          <td class="td-dismissed">Alt 1 · Alt 2</td>
+          <td>Main reason for choosing this specific option over the others.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="slide-content" data-auto-animate>
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Strategic Alignment</span>
+    <span class="slide-section" data-id="header-section">05 · Section Name</span>
+  </div>
+  <div class="slide-body">
+    <div class="context-grid">
+      <div class="ctx-card blue">
+        <div class="ctx-badge">Highlight 1</div>
+        <div class="ctx-title">First major benefit</div>
+        <div class="ctx-body">Detailed explanation of why this feature or benefit is important and how it addresses a specific constraint.</div>
+      </div>
+      <div class="ctx-card green">
+        <div class="ctx-badge">Highlight 2</div>
+        <div class="ctx-title">Second major benefit</div>
+        <div class="ctx-body">Detailed explanation of why this feature or benefit is important and how it addresses a specific constraint.</div>
+      </div>
+      <div class="ctx-card amber">
+        <div class="ctx-badge">Highlight 3</div>
+        <div class="ctx-title">Third major benefit</div>
+        <div class="ctx-body">Detailed explanation of why this feature or benefit is important and how it addresses a specific constraint.</div>
+      </div>
+      <div class="ctx-card purple">
+        <div class="ctx-badge">Highlight 4</div>
+        <div class="ctx-title">Fourth major benefit</div>
+        <div class="ctx-body">Detailed explanation of why this feature or benefit is important and how it addresses a specific constraint.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <section class="slide-content" data-transition="fade">
+    <div class="slide-header">
+      <span class="slide-title-text" data-id="header-title">Vertical Slides Demo</span>
+      <span class="slide-section" data-id="header-section">06 · Stack Entry</span>
+    </div>
+    <div class="slide-body">
+      <div style="font-size:0.55em; color:var(--text); font-weight:600; margin-bottom:0.8em;">This is a vertical slide stack.</div>
+      <div style="font-size:0.42em; color:var(--muted); line-height:1.7; max-width:90%;">
+        Use the down arrow to move through child slides, then up to return.
+        This pattern is useful for adding optional detail without breaking the main narrative flow.
+      </div>
+      <div class="bilingual-note" style="margin-top:2.5em; width:fit-content;">
+        <p><span>Navigation:</span> Next level &nbsp;=&nbsp; Down Arrow &nbsp;&nbsp;|&nbsp;&nbsp; <span>Back:</span> Up Arrow</p>
+      </div>
+      <div class="subslide-indicator"><span class="arrow">↓</span><span>Subslide below</span></div>
+    </div>
+  </section>
+
+  <section class="slide-content" data-transition="fade">
+    <div class="slide-header">
+      <span class="slide-title-text" data-id="header-title">Vertical Slides Demo</span>
+      <span class="slide-section" data-id="header-section">06 · Detail Level 1</span>
+    </div>
+    <div class="slide-body">
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-val">L1</div>
+          <div class="stat-label">First layer of detail inside the same horizontal chapter.</div>
+        </div>
+        <div class="stat-box green">
+          <div class="stat-val">+Depth</div>
+          <div class="stat-label">Keep advanced context optional for viewers who need it.</div>
+        </div>
+      </div>
+      <ul style="margin-top:1.2em;">
+        <li>Keep the parent slide as the chapter intro.</li>
+        <li>Use child slides for deeper breakdowns.</li>
+      </ul>
+      <div class="subslide-indicator"><span class="arrow">↓</span><span>Subslide below</span></div>
+    </div>
+  </section>
+
+  <section class="slide-content" data-transition="fade">
+    <div class="slide-header">
+      <span class="slide-title-text" data-id="header-title">Vertical Slides Demo</span>
+      <span class="slide-section" data-id="header-section">06 · Detail Level 2</span>
+    </div>
+    <div class="slide-body">
+      <div class="context-grid" style="height:70%;">
+        <div class="ctx-card blue">
+          <div class="ctx-badge">Use Case</div>
+          <div class="ctx-title">Deep-dive annex</div>
+          <div class="ctx-body">Place technical explanations, backup data, and implementation details on vertical child slides.</div>
+        </div>
+        <div class="ctx-card green">
+          <div class="ctx-badge">Speaker Control</div>
+          <div class="ctx-title">Flexible pace</div>
+          <div class="ctx-body">You can skip child slides in short sessions while still keeping complete material in the same deck.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="slide-content" data-auto-animate data-transition="fade">
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Image Usage Demo</span>
+    <span class="slide-section" data-id="header-section">07 · Media</span>
+  </div>
+  <div class="slide-body" style="display:flex; flex-direction:column; gap:1.2em;">
+    <div style="font-size:0.42em; color:var(--muted);">Example slide showing how to embed an image asset in the template.</div>
+    <div style="flex:1; min-height:0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface2); display:flex; align-items:center; justify-content:center;">
+      <img src="../../assets/images/accrylic.jpg" alt="Acrylic visual" style="width:100%; height:100%; object-fit:cover; display:block;">
+    </div>
+    <div class="footnote" style="padding-top:1em;">Source: assets/images/accrylic.jpg</div>
+  </div>
+</section>
+
+<section class="slide-content" data-auto-animate data-transition="fade">
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Video Player Demo</span>
+    <span class="slide-section" data-id="header-section">08 · Media</span>
+  </div>
+  <div class="slide-body" style="display:flex; flex-direction:column; gap:1.2em;">
+    <div style="font-size:0.42em; color:var(--muted);">Example slide showing how to embed a video asset in the template.</div>
+    <div style="flex:1; min-height:0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface2); display:flex; align-items:center; justify-content:center;">
+      <video controls preload="metadata" playsinline style="width:100%; height:100%; object-fit:cover; display:block;">
+        <source src="../../assets/media/bushes.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="footnote" style="padding-top:1em;">Source: assets/media/bushes.mp4</div>
+  </div>
+</section>
+
+<section class="slide-content" data-auto-animate data-transition="fade">
+  <div class="slide-header">
+    <span class="slide-title-text" data-id="header-title">Key Takeaways</span>
+    <span class="slide-section" data-id="header-section">Conclusion</span>
+  </div>
+  <div class="slide-body" style="display:flex; flex-direction:column; justify-content:flex-start;">
+    <div style="display:flex; gap:4%; height:90%; margin-top:2%;">
+
+      <div class="fragment fade-up" style="flex:1; background:var(--surface2); border:1px solid var(--border); border-radius:16px; padding:6% 5%; display:flex; flex-direction:column; gap:1em; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background:var(--text); border-radius: 16px 16px 0 0;"></div>
+        <div style="font-size:0.6em; font-weight:700; color:var(--muted); font-family:monospace;">01</div>
+        <div style="font-size:0.55em; font-weight:600; color:var(--text); line-height:1.3; letter-spacing:-0.02em;">First Key Conclusion</div>
+        <div style="font-size:0.4em; color:var(--muted); line-height:1.6; flex:1;">Summary of the first main takeaway from the presentation. Keep it impactful and directly linked to the initial problem statement.</div>
+      </div>
+
+      <div class="fragment fade-up" style="flex:1; background:var(--surface2); border:1px solid var(--border); border-radius:16px; padding:6% 5%; display:flex; flex-direction:column; gap:1em; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background:var(--accent-green); border-radius: 16px 16px 0 0;"></div>
+        <div style="font-size:0.6em; font-weight:700; color:var(--muted); font-family:monospace;">02</div>
+        <div style="font-size:0.55em; font-weight:600; color:var(--text); line-height:1.3; letter-spacing:-0.02em;">Second Key Conclusion</div>
+        <div style="font-size:0.4em; color:var(--muted); line-height:1.6; flex:1;">Summary of the second main takeaway. Focus on the core value or the validation of the proposed methodology/architecture.</div>
+      </div>
+
+      <div class="fragment fade-up" style="flex:1; background:var(--surface2); border:1px solid var(--border); border-radius:16px; padding:6% 5%; display:flex; flex-direction:column; gap:1em; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background:var(--accent-amber); border-radius: 16px 16px 0 0;"></div>
+        <div style="font-size:0.6em; font-weight:700; color:var(--muted); font-family:monospace;">03</div>
+        <div style="font-size:0.55em; font-weight:600; color:var(--text); line-height:1.3; letter-spacing:-0.02em;">Third Key Conclusion</div>
+        <div style="font-size:0.4em; color:var(--muted); line-height:1.6; flex:1;">Summary of the final takeaway. Often used to discuss next steps, scalability, or future perspectives.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="slide-closing" data-transition="fade">
+  <h1 class="text-gradient">Thank You</h1>
+  <div class="sub">Questions &amp; Discussion</div>
+  <div class="meta">
+    <strong>Speaker Name</strong>
+    <span>Role &nbsp;·&nbsp; Organization &nbsp;·&nbsp; Date / Year</span>
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: 'c/t',
+  progress: true,
+  transition: 'none', // Keeps the data-auto-animate smooth
+  transitionSpeed: 'fast',
+  backgroundTransition: 'fade',
+  controls: true,
+  center: false,
+  width: 1280,
+  height: 720,
+  margin: 0,
+  plugins: [ RevealNotes, RevealHighlight ]
+});
+</script>
+</body>
+</html>
