@@ -13,10 +13,36 @@ Current workflow: one HTML file equals one template.
 ├── .gitignore
 ├── assets/
 │   ├── images/
-│   └── media/
-└── templates/
-    └── drafts/
+│   ├── media/
+│   └── readme-preview/
+└── templates/  # Finished templates 
+    └── drafts/ # In developement templates
 ```
+
+## Preview
+
+The `assets/readme-preview/` folder contains the current theme screenshots. Each theme is wrapped in a dropdown so the preview can be hidden when not needed.
+
+<details>
+<summary>Vercel Dark</summary>
+
+![Vercel Dark preview](assets/readme-preview/vercel-dark.png)
+
+</details>
+
+<details>
+<summary>Vercel Light</summary>
+
+![Vercel Light preview](assets/readme-preview/vercel-light.png)
+
+</details>
+
+<details>
+<summary>Nord Dark</summary>
+
+![Nord Dark preview](assets/readme-preview/vercel-nord.png)
+
+</details>
 
 ## Template rules
 
