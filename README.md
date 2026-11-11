@@ -1,5 +1,7 @@
 # reveal-js-tplt
 
+# ! If you're looking for goood looking presentation, go here instead => https://github.com/crowdedmovie/slidev-tplt !
+
 Template repository for visual presentation support decks built with Reveal.js.
 
 Current workflow: one HTML file equals one template.
